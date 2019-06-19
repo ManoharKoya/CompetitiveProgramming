@@ -1,18 +1,24 @@
 #include<bits/stdc++.h>
+#include<vector>
+#include<iterator>
 #define lli long long int
 #define MOD 1000000007
 #define pb push_back
 #define NA(i,n) for(lli i=0;i<n;i++)
 using namespace std;
+
+// use -->  g++ -std=c++11 -o c.exe max-sum-GCD-subsets.cpp
+// command to run incase of auto itr
+
 lli gcd(lli a,lli b){
     if(a==0) return b;
     return gcd(b%a,a);
 }
 void solve(){
     lli n,Maxgcd=0,tp; cin>>n;
-    lli ar[n]; set<lli, greater<lli>> a;
+    lli ar[n]; set<lli, greater<lli> > a;
     NA(i,n) {cin>>ar[i]; a.insert(ar[i]);}
-    n = a.size(); //cout<<n<<endl;
+    n = a.size(); 
      lli Pgcd[n],Sgcd[n];
      Pgcd[0]=*a.begin();  Sgcd[n-1]=*a.rbegin(); 
      auto it=a.begin(); lli i=1; it++;
