@@ -29,25 +29,38 @@ void sieveUptoN(){
     return;
 }
 void sieveStartEnd(){
-    lli s,e; cin>>s>>e;
+    lli s,e,a,b,c; cin>>s>>e;
     bool tch[e-s+1];
     double E = e;
     double sqrtE = sqrt(E);
+    cout<<s<<endl;
     lli tp=s%2;
+    NA(i,0,e-s+1) tch[i]=false;
+
     while(tp<e-s+1){
-            tch[tp]=true; tp+=2;
+        tch[tp]=true; tp+=2;
     }
     NA(i,3,sqrtE){
-        if(!s%i){}
+        if(s%i==0) a=0; 
+        else a=1;
+        b=s/i; b+=a; b*=i; // cout<<"b "<<b<<endl;
+        for(lli j=b;j<e+1;j+=(i)){
+            tch[j-s]=true;
+        }
     }
-    // if(s==2 || s==1 || s==0) write it 
+    
+    NA(i,0,10){
+        if(s+i==2 || s+i==3 || s+i==5 || s+i==7) { if(i>e-s) break; tch[i]=true;}
+    }
+    if(s==1) tch[0]=true;
+    NA(i,0,e-s+1) if(!tch[i]) cout<<i+s<<" ";
     return;
 }
 int main(){
     lli t; cin>>t;
     // double tt = t;
-    // cout<<tt<<endl;
-    NA(i,0,t) sieveUptoN();
-    // NA(i,0,t) sieveStartEnd(); 
+    // cout<<tt<<endl; 
+    // NA(i,0,t) sieveUptoN();
+    NA(i,0,t) sieveStartEnd(); 
     return 0;
 }
