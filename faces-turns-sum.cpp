@@ -12,7 +12,7 @@ lli totWays(lli f,lli t,lli s){
     if(t==0 && s==0) return 1;
     if(t<0 || s<0 || f*t<s || t>s ) return 0;
     if(dp[t][s]==0)
-    NA(i,1,f+1) dp[t][s]+=totWays(f,t-1,s-i);
+    NA(i,1,f+1) dp[t][s]+=totWays(f,t-1,s-i); // imp
     return dp[t][s];
 }
 int main(){
