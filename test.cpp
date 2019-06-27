@@ -6,23 +6,22 @@
 #define pb push_back
 #define NA(i,s,n) for(lli i=s;i<n;i++)
 using namespace std;
+
 void solve(){
-    lli n1,n2,n3; cin>>n1>>n2>>n3;
-    lli a[n1+n2+n3];
-    vector <lli> res;
-    NA(i,0,n1+n2+n3) cin>>a[i];
-    sort(a,a+n1+n2+n3);
-    NA(i,0,n1+n2+n3-1){
-        if(a[i]==a[i+1]){
-            res.pb(a[i]);
-            if(a[i]==a[i+2]) i+=2;
-            else i++; 
+    lli n,m; cin>>n>>m;
+    lli c,d;
+    lli c1=0,c2=0,d1=0,d2=0;
+    NA(i,0,n){
+        cin>>d>>c;
+        if(c>c1 && d!=d1){
+            c2=c1; d2=d1;
+            c1=c; d1=d;
+        }
+        else if (c>c2 && c<c1 && d!=d1){
+            c2=c; d2=d;
         }
     }
-    sort(res.begin(),res.end());
-    for(auto it : res){
-        cout<<it<<endl;
-    }
+    cout<<c1+c2<<endl;
     return;
 }
 int main(){
