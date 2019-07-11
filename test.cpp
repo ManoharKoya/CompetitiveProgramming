@@ -7,21 +7,33 @@
 #define NA(i,s,n) for(lli i=s;i<n;i++)
 using namespace std;
 
+lli num_to_bits[16] = {0, 1, 1, 2, 1, 2, 2, 3,  
+                    1, 2, 2, 3, 2, 3, 3, 4};  
+
+lli countSetBitsRec(lli num)  
+{  
+    lli nibble = 0;  
+    if (0 == num)  
+        return num_to_bits[0];  
+      
+    // Find last nibble  
+    nibble = num & 0xf;  
+      
+    // Use pre-stored values to find count  
+    // in last nibble plus recursively add  
+    // remaining nibbles.  
+    return num_to_bits[nibble] +  
+            countSetBitsRec(num >> 4);  
+}  
+
+  
 void solve(){
-    lli n,m; cin>>n>>m;
-    lli c,d;
-    lli c1=0,c2=0,d1=0,d2=0;
-    NA(i,0,n){
-        cin>>d>>c;
-        if(c>c1 && d!=d1){
-            c2=c1; d2=d1;
-            c1=c; d1=d;
-        }
-        else if (c>c2 && c<c1 && d!=d1){
-            c2=c; d2=d;
-        }
+    lli n,l=1;  cin>>n;
+    cout<<countSetBitsRec(n)<<endl;
+    NA(i,0,64) {
+        l*=2;
     }
-    cout<<c1+c2<<endl;
+    cout<<l<<endl;
     return;
 }
 int main(){
