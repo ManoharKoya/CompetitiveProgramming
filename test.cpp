@@ -1,43 +1,67 @@
 #include<bits/stdc++.h>
-#include<vector>
-#include<iterator>
 #define lli long long int
 #define MOD 1000000007
 #define pb push_back
+#define pr pair<lli,lli>
 #define NA(i,s,n) for(lli i=s;i<n;i++)
 using namespace std;
+// struct node{
+//     lli val;
+//     struct node* next;
+// };
+// struct node *root=NULL;
+// struct node *temp=NULL;
+// struct node cnode(lli v){
+//     struct node *n;
+//     n = (struct node*)malloc(sizeof(struct node));
+//     n->val = v;
+//     n->next = NULL;
+//     return n;
+// }
+// void createCLL(lli n){
+//     lli v; 
+//     cin>>v;
+//     root = (struct node*)malloc(sizeof(struct node));
+//     root->val=v;
+//     root->next = NULL;
+//     temp = root;
+//     NA(i,0,n-1){
+//         cin>>v; 
+//         temp->next = cnode(v);
+//         temp=temp->next;
+//     }
+//     temp->next = root;
+// }
+// void printCLL(){
+//     temp=NULL;
+//     while(){
 
-lli num_to_bits[16] = {0, 1, 1, 2, 1, 2, 2, 3,  
-                    1, 2, 2, 3, 2, 3, 3, 4};  
-
-lli countSetBitsRec(lli num)  
-{  
-    lli nibble = 0;  
-    if (0 == num)  
-        return num_to_bits[0];  
-      
-    // Find last nibble  
-    nibble = num & 0xf;  
-      
-    // Use pre-stored values to find count  
-    // in last nibble plus recursively add  
-    // remaining nibbles.  
-    return num_to_bits[nibble] +  
-            countSetBitsRec(num >> 4);  
-}  
-
-  
-void solve(){
-    lli n,l=1;  cin>>n;
-    cout<<countSetBitsRec(n)<<endl;
-    NA(i,0,64) {
-        l*=2;
+//     }
+// }
+// void solve(){
+//     lli n; cin>>n;
+//     createCLL(n);   
+// }
+// int main(){
+//     string s; cin>>s;
+//     lli n; cin>>n;
+//     NA(i,0,n) solve();
+// }
+bool isPrime(lli num){
+    bool flag=true;
+    for(lli i = 2; i <= num / 2; i++) {
+       if(num % i == 0) {
+          flag = false;
+          break;
+       }
     }
-    cout<<l<<endl;
-    return;
+    return flag;
 }
+
 int main(){
-    lli t; cin>>t;
-    NA(i,0,t) solve(); 
+    lli m = 999950884;
+    NA(i,m+1,10e9+1){
+        if(isPrime(i)) cout<<i<<endl;
+    }
     return 0;
 }
