@@ -4,7 +4,7 @@
     // P(m) = (p1-1)*(p2-1)
     // 1<lock<P(m) and lock is coprime with m & P(m)
     // key*lock(mod P(m)) = 1
-
+import java.util.Arrays;
 class RSA {
     int lock,key,m;
     int p1,p2;
@@ -16,8 +16,8 @@ class RSA {
         lock = findLock(m, Pm);
         key = findKey(lock, Pm);
     }
-    static int power(int a,int b){
-        int res =1;
+    static long power(int a,int b){
+        long res =1;
         for(int i=0;i<b;i++){
             res = res*a;
         }
@@ -36,7 +36,7 @@ class RSA {
     } 
     public int findLock(int m,int Pm){
         for(int i=2;i<Pm;i++){
-            if(__gcd(i, m)==1 && __gcd(i, Pm)==1) return 1;
+            if(__gcd(i, m)==1 && __gcd(i, Pm)==1) return i;
         }
         return 0;
     }
@@ -46,12 +46,14 @@ class RSA {
         }
         return 0;
     }
-    public int[] encrypt(String word){
+    public long[] encrypt(String word){
         int sz = word.length();
-        int[] arr = new int[sz];
+        long[] arr = new long[sz];
         for(int i=0;i<sz;i++){
             int k = (int)(word.charAt(i));
+            System.out.println("k->"+k + " lock->"+ lock+" m->"+ m);
             arr[i]=power(k, lock)%(m);
+            // System.out.println(arr[i]);
         }
         return arr;
     }
@@ -59,7 +61,7 @@ class RSA {
         int sz = arr.length;
         char[] S = new char[sz];
         for(int i=0;i<sz;i++){
-            int k = power(arr[i], key)%(m);
+            long k = power(arr[i], key)%(m);
             S[i] = (char)(k);
         }
         return S;
@@ -67,6 +69,14 @@ class RSA {
     public static void main(String args[]){
         RSA object = new RSA();
         object.process(2, 7);
-        System.out.print(object.key);
+        System.out.println(object.lock);
+        long a[] = object.encrypt("wordkkk");
+        String arr="";
+        for(int i =0;i<a.length;i++){
+           arr =  arr.concat(String.valueOf(a[i]));
+        }
+        System.out.println(arr);
+        for (int i=0;i<arr.length();i++) System.out.print(arr.charAt(i));
+        // System.out.println(object.deCrypt(object.encrypt("word")));
     }
 }
