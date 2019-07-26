@@ -15,19 +15,16 @@ void dfsRec(lli r,vector<lli> gp[],lli vis[]){
     }
     return;
 }
-void dfsItr(lli r, vector<lli> gp[],lli vis[]){
+void dfsItr(lli r, vector<lli> gp[],lli vis[],lli e){
     stack<lli> s; s.push(r);
-    lli cur;
-    while(!s.empty()){
+    lli cur,ct=1;
+    while(ct<e+2){
         cur = s.top();
         s.pop();
-        if(vis[cur]==0){
             cout<<cur<<" ";
-            vis[cur]=1;
-        }
         vector<lli>::iterator it = gp[cur].begin();
         while(it!=gp[cur].end()){
-            if(vis[*it]==0) { s.push(*it); }
+            { ct++; s.push(*it); }
             it++;
         }
     }
@@ -44,9 +41,9 @@ int solve(){
     }
     
     cout<<"Enter root: "; lli r; cin>>r;
-    dfsRec(r,gp,vis); cout<<endl;
-    NA(i,0,v+1) vis[i]=0;
-    dfsItr(r,gp,vis);
+    // dfsRec(r,gp,vis); cout<<endl;
+    // NA(i,0,v+1) vis[i]=0;
+    dfsItr(r,gp,vis,e);
 }
 int main(){
     solve();
