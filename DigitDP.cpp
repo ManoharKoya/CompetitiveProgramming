@@ -17,7 +17,7 @@ using namespace std;
 lli a,b,d,k;
 vector<lli> num;
 // vector<vector<vector<lli> > > DP; 
-lli DP[12][12][2];
+lli DP[100][100][2];
 
 lli solve(lli pos,lli ct,lli f){
     if(ct>k) return 0;

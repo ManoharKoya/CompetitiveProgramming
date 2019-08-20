@@ -27,7 +27,8 @@ void solve(){
     lli n,s=0,sz; cin>>n; 
     lli a[n+1],x[n+1]; a[0]=0; x[0]=0;
     NA(i,1,n+1) cin>>a[i];
-    NA(i,1,n+1) x[i]=x[i-1]^a[i];
+    NA(i,1,n+1) x[i]=x[i-1]^a[i];  // prefix xor array.
+     // map from k to vectors to store prefix sum of indices -> occurances of k. 
     map<lli, vector<lli> > p;
     NA(i,0,n+1){
         sz = p[x[i]].size(); 

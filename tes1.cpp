@@ -1,34 +1,35 @@
-#include <iostream>
+// How many numbers x are there in the range a to b, where the digit d occurs exactly k times in x? 
 #include<bits/stdc++.h>
 #define lli long long int
+#define MOD 1000000007
+#define KING 1000000000
+#define queen 1000009
+#define pr pair<lli,lli>
+#define pb push_back
+#define eb emplace_back
+#define mp make_pair
+#define vi vector<lli>
+#define vpi vector<pr> 
+#define fastIO ios_base::sync_with_stdio(false); cin.tie(NULL)
 #define NA(i,s,n) for(lli i=s;i<n;i++)
 using namespace std;
-lli n;
-vector<vector<lli> > dp;
-lli fun(lli s,lli k,lli a[]){
-    if(s>n-1) return 0;
-    if(k==1) return a[n-1]-a[s];
-    if(dp[s][k]!=0) return dp[s][k];
-    lli res = 1e9;
-    NA(i,s,n){
-        res = min(res, a[i]-a[s] + fun(i+1,k-1,a));
-    }
-    dp[s][k]=res;
-    return res;
-}
-int main() {
-    lli k; cin>>n>>k;
-    dp.resize(n);
-    NA(i,0,n){
-        dp[i].resize(k,0);
-    }
-    NA(i,0,n){
-        NA(j,0,k){
-            dp[i][j]=0;
-        }
-    }
-    lli a[n];
+
+int main(){
+    lli n,m,s,f; cin>>n>>m;
+    lli a[n],b[n];
     NA(i,0,n) cin>>a[i];
-    cout<<fun(0,k,a)<<endl;
-return 0;
+    NA(i,0,n) cin>>b[i];
+    priority_queue<pr> pq;
+    NA(i,0,n){
+        pq.push(mp(a[i]*b[i],i));
+    }
+    NA(i,0,m){
+        s = pq.top().second;
+        f = pq.top().first;
+        pq.pop(); 
+        pq.push(mp(f-b[s],s));
+    }
+    cout<<pq.top().first<<endl;
+    return 0;
 }
+
