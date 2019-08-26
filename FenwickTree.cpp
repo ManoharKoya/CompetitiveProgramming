@@ -19,11 +19,17 @@ lli prefixSum(lli l,lli ft[]){
     lli s = 0;
     while(l>0){
         s+=ft[l];
-        l &= ~lsb(l);
+        l &= ~lsb(l);  // equivalent to --> l -= lsb(i);
     }
     return s;
 }
-
+void pointUpdate(lli t,lli d,lli ft[],lli n){
+    while(t<=n){
+            ft[t]+=d;
+            t+=lsb(t);
+        }
+    return;
+}
 void solve(){
     // input array.
     lli n,t; cin>>n; lli a[n+1];
@@ -35,18 +41,19 @@ void solve(){
         if(t<=n) ft[t]+=ft[i];
     }
     // point updates.
-    lli q,d; cin>>q;
+    lli q,d,f,l,r; cin>>q;
     NA(i,0,q) {
-        cin>>t>>d;
-        while(t<=n){
-            ft[t]+=d;
-            t+=lsb(t);
+        cin>>f; 
+        if(f==1){
+            cin>>t>>d;
+            pointUpdate(t,d,ft,n);
+            }
+        else {
+            cin>>l>>r;
+            lli res = prefixSum(r,ft)-prefixSum(l-1,ft); 
+            cout<<res<<endl;
         }
     }
-    // range query.
-    lli l,r; cin>>l>>r;
-    lli res = prefixSum(r,ft)-prefixSum(l-1,ft); 
-    cout<<res<<endl;
     return;
 }
 int main(){
