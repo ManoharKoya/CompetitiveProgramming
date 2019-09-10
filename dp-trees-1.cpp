@@ -15,7 +15,7 @@
 using namespace std;
 
 /*
-    max sum path form root to leaf.
+    max sum path from root to leaf.
     1 is always root of the tree give. plz follow the constraint.
 */
 vi dp;
