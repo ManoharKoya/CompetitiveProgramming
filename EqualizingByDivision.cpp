@@ -6,7 +6,7 @@
 #define nl cout<<endl
 #define pr pair<lli,lli>
 #define pb push_back
-#define eb emplace_back
+#define eb emplace_back 
 #define mp make_pair
 #define vi vector<lli>
 #define vpi vector<pr> 
