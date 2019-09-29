@@ -10,31 +10,12 @@
 #define mp make_pair
 #define vi vector<lli>
 #define vpi vector<pr> 
+#define vfi vector<pair<float,float> >
 #define fastIO ios_base::sync_with_stdio(false); cin.tie(NULL)
 #define NA(i,s,n) for(lli i=s;i<n;i++)
+
 using namespace std;
 
-/*
-Prerequisites.
-    -> kth smallest element in an array in O(n). 
-    -> QuickSelect algo.
-    -> median find in O(n).
-
-Pseudocode.
-
-1. create (val/wt) array.
-2. find median(val/wt) in array.
-procedure(median,W):
-    3. cal. sum of wt's of (val/wt)>median.
-    4. if(W1==W) return median.
-        else if(W1>W) newMed = median((vla/wt) < median), return procedure(newMed,W-M);
-        else newMed = median((val/wt)>median), return procedure(newMed,W);
-
-
-This whill only ensure that average time of O(n).
-For worstcase O(n) -> check median-of-medians Algo.
-*/
-#define vfi vector<pair<float,float> >
 vfi res;
 vfi knapsak(vector<pair<float,float> > a, float w){
     lli pvt = rand() % a.size();
@@ -75,7 +56,6 @@ int main(){
         cout<<res[i].first<<" "<<res[i].second,nl;
     // float a,b; cin>>a>>b; cout<<a<<" "<<b<<" "<<(a/b);
     // vector<pair<float,float> > d;
-    
     // float c = a/b; nl,cout<<c;
     return 0;
 }

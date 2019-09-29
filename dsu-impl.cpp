@@ -3,6 +3,7 @@
 #define MOD 1000000007
 #define KING 1000000000
 #define queen 1000009
+#define CLR(a) memset((a),0,sizepf(a))
 #define pr pair<lli,lli>
 #define pb push_back
 #define eb emplace_back
@@ -15,7 +16,7 @@ using namespace std;
 
 struct dsu{
 	lli par[200200],sz[200200];
-	inline void init(lli _n){for(lli i=0;i<_n;++i) par[i]=i,sz[i]=1;}
+	inline void init(lli _n){ NA(i,0,n) par[i]=i,sz[i]=1;}
 	inline lli find(lli now){
 		if(par[now]==now) return now;
 		return par[now]=find(par[now]);

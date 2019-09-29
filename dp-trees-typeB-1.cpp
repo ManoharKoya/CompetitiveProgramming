@@ -18,20 +18,20 @@ using namespace std;
     finding height of the tree from all possible nodes as roots.
 */
 
-const long N = 1e5;
-vi dp,in,out,gp[N];
+const long N = 1e4;
+vi in,out;
 
-void inDFS(lli a,lli rt){
+void inDFS(lli a,lli rt,vi gp[]){
     in[a]=0;
     NA(i,0,gp[a].size()){
         lli val = gp[a][i];
         if(val==rt) continue;
-        inDFS(val,a);
+        inDFS(val,a,gp);
         in[a] = max(in[a],1+in[val]);
     }
     return;
 }
-void outDFS(lli a,lli rt){
+void outDFS(lli a,lli rt,vi gp[]){
     lli m1=-1,m2=-1;
     // finding top 2 max values.
     NA(i,0,gp[a].size()){
@@ -46,27 +46,36 @@ void outDFS(lli a,lli rt){
         if(val==rt) continue;
         if(in[val]==m1) use=m2;
         out[val] = max(1+out[a],2+use);
-        outDFS(val,a);
+        outDFS(val,a,gp);
     }
 
     return;
 }
 
 void solve(){
-
-    lli n,m,a,b; cin>>n>>m; 
-    in.resize(n+1),out.resize(n+1),dp.resize(n+1);
-    NA(i,0,m) cin>>a>>b,gp[a].pb(b),gp[b].pb(a);
+    lli mx=-2,n,a,b; cin>>n; n++;
+    vi gp[N];
+    in.resize(n+1,0),out.resize(n+1,0);
+    // NA(i,0,m) cin>>a>>b,gp[a].pb(b),gp[b].pb(a);
+    NA(i,0,n){
+        a = i - (i&(-i));
+        ++a,++i; 
+        if(i==a) {--i; continue;}
+        gp[a].pb(i),gp[i].pb(a); i--;
+    }
     // exit(0);
-    inDFS(1,0); 
+    inDFS(1,0,gp); 
     // out[1]=in[1];
-    outDFS(1,0);
+    outDFS(1,0,gp);
     // exit(0);
-    NA(i,1,n+1) cout<<in[i]<<" ",dp[i]=max(in[i],out[i]),cout<<dp[i]<<endl; 
-    nl;
+    NA(i,1,n+1) cout<<in[i]<<" "; nl;
+    // NA(i,1,n+1) mx=max(mx,max(in[i],out[i]));
+    // cout<<mx,nl; 
     return;
 }
 int main(){
-	fastIO; solve();
+	fastIO; 
+    lli t; cin>>t;
+    NA(i,0,t) solve();
     return 0;
 }

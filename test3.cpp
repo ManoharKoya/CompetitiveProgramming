@@ -13,21 +13,25 @@
 #define fastIO ios_base::sync_with_stdio(false); cin.tie(NULL)
 #define NA(i,s,n) for(lli i=s;i<n;i++)
 using namespace std;
-lli n,m,s,c,ct;
 void solve(){
-    cin>>n>>m; //cout<<n<<" "<<m;
-    vi a(n,0);
-    lli b[m]; //cout<<"TEST",nl;
-    NA(i,0,m) cin>>b[i],b[i]--;
-    c = 1; ct=0; //cout<<"TEST",nl;
-    NA(i,0,m){
-        s = b[i];
-        ++a[s];
-        if(a[s]!=c) {cout<<"NO",nl; return;}
-        ct++; if(ct%n==0) ++c;
+	lli n,q,c,d; cin>>n>>q;
+    vi a(n+1),b(n+1);
+    NA(i,1,n) cin>>a[i];
+    b[1] = a[1], b[0] = 0;
+    NA(i,2,n){
+        if(i%2) b[i] = b[i-1]+a[i];
+        else b[i] = b[i-1]-a[i];
+        // cout<<b[i]<<" ";
     }
-    cout<<"YES",nl; 
-    return;
+    NA(i,0,q) {
+        cin>>c>>d; // cout<<"("<<c<<","<<d<<")",nl;
+        if(!((abs(c-d))%2)) cout<<"UNKNOWN",nl;
+        else {
+            if(c>d) swap(c,d);
+            if(c%2) cout<<b[d-1]-b[c-1],nl;
+            else cout<<b[c-1]-b[d-1],nl;   
+        }
+    }
 }
 int main(){
 	fastIO; 

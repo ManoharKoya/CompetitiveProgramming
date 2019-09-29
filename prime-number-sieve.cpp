@@ -3,6 +3,8 @@
 #include<iterator>
 #define lli long long int
 #define MOD 1000000007
+#define KING 100000000
+#define nl cout<<"\n"
 #define pb push_back
 #define NA(i,s,n) for(lli i=s;i<n;i++)
 using namespace std;
@@ -30,16 +32,18 @@ void sieveUptoN(){
 }
 void sieveStartEnd(){
     lli s,e,a,b,c; cin>>s>>e;
+    if(s!=1) s--;
+    if(e!=(KING+1)) e++;
     bool tch[e-s+1];
     double E = e;
     double sqrtE = sqrt(E);
-    cout<<s<<endl;
+    // cout<<s<<endl;
     lli tp=s%2;
     NA(i,0,e-s+1) tch[i]=false;
 
     while(tp<e-s+1){
-        tch[tp]=true; tp+=2;
-    }
+        tch[tp]=true; tp+=2; cout<<e+tp<<" ";
+    }nl;
     NA(i,3,sqrtE){
         if(s%i==0) a=0; 
         else a=1;
@@ -58,9 +62,6 @@ void sieveStartEnd(){
 }
 int main(){
     lli t; cin>>t;
-    // double tt = t;
-    // cout<<tt<<endl; 
-    // NA(i,0,t) sieveUptoN();
     NA(i,0,t) sieveStartEnd(); 
     return 0;
 }

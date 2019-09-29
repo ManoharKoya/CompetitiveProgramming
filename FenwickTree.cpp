@@ -40,6 +40,9 @@ void solve(){
         t = i+lsb(i);
         if(t<=n) ft[t]+=ft[i];
     }
+    NA(i,1,n+1) cout<<a[i]<<" ";
+    cout<<endl;
+    NA(i,1,n+1) cout<<ft[i]<<" "; exit(0);
     // point updates.
     lli q,d,f,l,r; cin>>q;
     NA(i,0,q) {
@@ -47,6 +50,7 @@ void solve(){
         if(f==1){
             cin>>t>>d;
             pointUpdate(t,d,ft,n);
+            // NA(i,1,n+1) cout<<a[i]<<" ";
             }
         else {
             cin>>l>>r;
