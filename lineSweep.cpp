@@ -29,7 +29,7 @@ using namespace std;
 */
 vector<pair<double,double> > a; lli n,lft;
 double d=KING;
-bool cmp(pr g,pr h){
+bool cmp(pair<double,double> g,pair<double,double> h){
     return (g.se < h.se); 
 }
 void closestPr(){
