@@ -16,7 +16,7 @@ using namespace std;
 
 struct dsu{
 	lli par[200200],sz[200200];
-	inline void init(lli _n){ NA(i,0,n) par[i]=i,sz[i]=1;}
+	inline void init(lli _n){ NA(i,0,_n) par[i]=i,sz[i]=1;}
 	inline lli find(lli now){
 		if(par[now]==now) return now;
 		return par[now]=find(par[now]);

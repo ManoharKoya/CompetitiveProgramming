@@ -45,6 +45,7 @@ priority_queue<pr > pq;
 lli n,m,a,b,c,ct;
 vi d;                   // dist's from a given single sourece. 
 vector<bool> vis;
+
 void solve(){
 	cin>>n>>m; 
     NA(i,0,m) {

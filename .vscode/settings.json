@@ -59,6 +59,7 @@
         "typeindex": "cpp",
         "typeinfo": "cpp",
         "regex": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "random": "cpp"
     }
 }

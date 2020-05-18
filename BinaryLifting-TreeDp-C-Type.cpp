@@ -94,8 +94,8 @@ void solve(){
 
     lli q; cin>>q;
     NA(i,0,q)
-        cin>>a>>b,dist(a,b);
-        
+        // cin>>a>>b,dist(a,b);
+        cin>>a>>b, lca(a,b);
     // cin>>a>>b; kthPar(a,b);
     return;
 }

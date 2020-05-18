@@ -15,11 +15,17 @@
 using namespace std;
 
 /*
-    One day Polycarp published a funny picture in a social network making a poll about the color of his handle. Many of his friends started reposting Polycarp's joke to their news feed. Some of them reposted the reposts and so on.
+One day Polycarp published a funny picture in a social network making a poll about the color of his handle.
+    Many of his friends started reposting Polycarp's joke to their news feed. Some of them reposted the reposts and so on.
 
-These events are given as a sequence of strings "name1 reposted name2", where name1 is the name of the person who reposted the joke, and name2 is the name of the person from whose news feed the joke was reposted. It is guaranteed that for each string "name1 reposted name2" user "name1" didn't have the joke in his feed yet, and "name2" already had it in his feed by the moment of repost. Polycarp was registered as "Polycarp" and initially the joke was only in his feed.
+These events are given as a sequence of strings "name1 reposted name2", where name1 is the name of the 
+person who reposted the joke, and name2 is the name of the 
+person from whose news feed the joke was reposted. It is guaranteed that for each string "name1 reposted 
+name2" user "name1" didn't have the joke in his feed yet, and "name2" already had it in his feed by the moment 
+of repost. Polycarp was registered as "Polycarp" and initially the joke was only in his feed.
 
-Polycarp measures the popularity of the joke as the length of the largest repost chain. Print the popularity of Polycarp's joke.
+Polycarp measures the popularity of the joke as the length of the largest repost chain. Print the popularity of 
+Polycarp's joke.
 
 
 */

@@ -1,28 +1,24 @@
-# def sum(n):
-#     su = 0
-#     while n>0:
-#         su+=(n%10)
-#         n = int(n/10)
-#     return su
-# def magic(n):
-#     sm = sum(n)
-#     if int(sm/10)>0 :
-#         return magic(sm)
-#     elif sm==1:
-#         return 1
-#     else :
-#         return 0 
-# def magicItr(n):
-#     sm = n
-#     while(1):
-#         sm = sum(sm)
-#         if int(sm/10)<=0 :
-#             if sm==1:
-#                 return 1
-#             else:
-#                 return 0
-# l = int(input())
-# r = int(input())
-# for i in range(l,r+1):
-#     if magic(i) : print(i)
-#     # print(magicItr(i)) for iterative method.
+def merge(l1,l2):
+    p1,p2 = (0,0)
+    res = []
+    while(p1<len(l1) and p2<len(l2)):
+        if(l1[p1]<l2[p2]):
+            res.append(l1[p1])
+            p1+=1
+        else :
+            res.append(l2[p2])
+            p2+=1
+    if(p2<len(l2)):
+        while(p2<len(l2)):
+            res.append(l2[p2])
+            p2+=1
+    if(p1<len(l1)):
+        while(p1<len(l1)):
+            res.append(l1[p1])
+            p1+=1
+    return res
+        
+if __name__=="__main__":
+	l1 = [1,2,3,100,250]
+	l2 = [3,110,200,249]
+	print(merge(l1,l2))

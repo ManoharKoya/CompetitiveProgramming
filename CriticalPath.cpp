@@ -38,7 +38,7 @@ critical taska are -> 1(A) 2(B) 4(D)
 */
 /*
 9 11
-8 10 8 9 5 3 2 4 3
+8 10 8 9 15 3 2 4 3
 3 1 3 2
 4 1
 5 2
@@ -57,7 +57,7 @@ FORMAT (i) -> earliest_st-ed latest_st-ed
 4-> 8-17 9-18
 5-> 10-15 17-22
 6-> 18-21 18-21
-7-> 17-19 19-21
+7-> 17-19 19-21 
 8-> 21-25 21-25
 9-> 21-24 22-25
 
@@ -67,7 +67,8 @@ critical taska are -> 2(B) 3(C) 6(F) 8(H)
 lli n,m,a,b,mx=0; 
 
 vi gp[N],gp1[N],es,ls,t; // gp is for EarliestSt(es), gp1 is for LatestSt(ls).
-vpi ed;
+map<pr,vi> rm;
+set<pr> ss; vpi vp;
 
 lli dfs(lli nd,lli rt){
     es[nd] = max(es[nd],es[rt]+t[rt]);
@@ -113,18 +114,28 @@ void solve(){
         if(!gp[i].size()) dfs1(i,0);
     nl,cout<<"FORMAT (i) -> earliest_st-ed latest_st-ed"; nl;
     NA(i,1,n+1) cout<<i<<"-> "<<es[i]<<"-"<<es[i]+t[i]<<" "<<ls[i]<<"-"<<ls[i]+t[i],nl;
-    nl,cout<<"critical taska are -> ";
-    NA(i,1,n+1) if(!(ls[i]-es[i])) cout<<i<<"("<<char(64+i)<<") ";
-    // NA(i,1,n+1){ 
-    //     cout<<i<<"-> ";
-    //     NA(j,0,gp1[i].size()) cout<<gp1[i][j]<<" "; nl;
-    // } nl;
-    // NA(i,1,n+1){ 
-    //     cout<<i<<"-> ";
-    //     NA(j,0,gp[i].size()) cout<<gp[i][j]<<" "; nl;
-    // }
-    // cout<<"Erl st.tm - ed.tm",nl;
-    // NA(i,1,n+1) cout<<i<<"->"<<es[i]<<"-"<<es[i]+t[i],nl;
+    nl,cout<<"critical paths are -> \n";
+    // NA(i,1,n+1) if(!(ls[i]-es[i])) cout<<i<<"("<<char(64+i)<<") "; nl;
+    // new 
+    lli paths=1;
+    NA(i,1,n+1)
+        if(!(ls[i]-es[i])) rm[{ls[i],ls[i]+t[i]}].pb(i),ss.insert({ls[i],ls[i]+t[i]});
+    
+    auto it = ss.begin(); 
+    while(it!=ss.end()){
+        paths*=rm[*it].size(); it++;
+    }
+    NA(i,0,paths){
+        auto it = ss.begin();
+        while(it!=ss.end()){
+            cout<<"(";
+            if(rm[*it].size()>1) cout<<char(64+rm[*it][i])<<" ";
+            else cout<<char(64+rm[*it][0])<<" ";
+            cout<<")";
+            it++;
+        }nl;
+    }
+    nl,cout<<"No. of Criticalpaths are "<<paths;
     return;
 }
 int main(){
