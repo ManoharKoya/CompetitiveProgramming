@@ -57,8 +57,8 @@ lli query(lli id, lli cur_l, lli cur_r, lli l, lli r){
 
 int main(){
 
-    //ios_base::sync_with_stdio(false);
-    //cin.tie(NULL);
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
 
     lli n; cin >> n;
     NA(i,0,n) cin >> a[i];
